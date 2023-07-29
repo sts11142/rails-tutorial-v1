@@ -53,6 +53,14 @@ $ git status
 $ git add -A
 
 $ git commit -m "hoge"
-
-$ git 
 ```
+
+GitHubで新規リポジトリを作成してから，`remote`接続
+```
+# GitHubで新規リポジトリを作って，
+$ git remote add origin https://github.com/<account_name>/<repo_name>.git
+
+$ git push -u origin main
+```
+
+これでセットアップ完了！！
