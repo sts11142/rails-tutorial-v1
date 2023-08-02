@@ -33,6 +33,6 @@ group :test do
   gem "guard-minitest"
 end
 
-group :produciton do
+group :production do
   gem "pg"
 end
