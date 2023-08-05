@@ -33,6 +33,35 @@ $ rails test
 ## rails helper
 `routes.rb`に`root`を定義すると，`root_url`(ルートのURLを返すヘルパーが使えるようになる)
 
+## Guardの起動方法
+こちらの記事を参考にした（[【Rails】Guardによるテスト自動化の設定【Rails Tutorial 3章まとめ】 - Qiita](https://qiita.com/kagamiya9/items/ac110963166139f0b458)）
+
+まずはチュートリアル第3章の最後の部分を参考にして，`bundle exec guard init`と`Guardfile.rb`を適切に編集する．
+
+その後，`.gitignore`を編集する（gitの競合を解消する目的とかなんとか）
+```
+# Ignore Spring files.
+/spring/*.pid
+```
+
+Guardを起動する（serveと同様起動し続けるタイプっぽいのでターミナルは別タブで）
+```
+$ bundle exec guard
+```
+
+終了は`Ctrl+D`で．
+
+
+## `Missing frozen string literal coment.`について
+Rubocopの警告です．Ruby2.3以降では，文字列リテラルで生成される文字列の値が変更されないようにfreezeするのが推奨されているとかなんとか？
+
+警告を消したければ，`.rubocop.yml`を編集するか，以下のマジックコマンドをファイルの先頭に加えること．
+
+`frozen_string_literal: true`
+
+ただし，↑を書くと同じ文字列の変数は同じオブジェクトと見做されるようになるよう．
+
+参考: [Rubyで #frozen_string_literal: true というマジックコメントを付ける意味 - Qiita](https://qiita.com/YutoYasunaga/items/98111ef50927ecb4135d)
 
 
 
