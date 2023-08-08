@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get '/about',   to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
   get '/signup',  to: 'users#new'
+  resources :users  # 操作を行う対象となるものを設置（テーブルとか？）
 end
