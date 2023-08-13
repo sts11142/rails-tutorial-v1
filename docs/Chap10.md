@@ -32,3 +32,17 @@ fixtureは，テスト用のユーザーを予め定義しておいて，それ�
 Gemfileについて，ここまでは基本的にバージョン指定を行わずにgemをインストールしてきました（互換性があるだろう，という何の根拠もない考え）．
 
 `will_paginate`gemは，バージョンを`3.1.1`かその周辺バージョンにしないと正しく動作しません（`4.0.0`のようにメジャーバージョンが異なると，will_paginateに内部的に渡される引数の数が異なっているためエラーが出ました）
+
+
+## `db:migrate:reset`って何だっけ？
+db周りのコマンドはいくつか種類があるよう↓
+
+参考：[rails db:reset、rails db:migrate:reset、rails db:setupの違い - Qiita](https://qiita.com/ken_ta_/items/9d2dd0d032f530311d2a)
+
+* `db:reset`
+* `db:migrate:reset`
+* `db:setup`
+
+知りたかったのは，`db:migrate:reset`がどのような処理になっているか，ということ（migrate，が含まれているけどこれが何を意味しているか理解していなかった）
+
+結論は，上のリストの一個目と二個目の違いは`migration`を実行するか否か（あと二個目はseedを読み込まない）．データベースはリセットされ新しいテーブルが用意される．なるほど簡潔
