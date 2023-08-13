@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get    'users/new'
   root   'static_pages#home'
   get    '/help',    to: 'static_pages#help'
   get    '/about',   to: 'static_pages#about'
@@ -10,4 +9,5 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :users  # 操作を行う対象となるものを設置（テーブルとか？）
   resources :account_activations, only: [:edit]
+  resources :password_resets,     onlu: [:new, :create, :update]
 end
