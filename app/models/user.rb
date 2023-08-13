@@ -12,7 +12,8 @@ class User < ApplicationRecord
                     uniqueness: true  # indexを追加する
   has_secure_password
   validates :password, presence: true,
-                       length: { minimum: 6 }
+                       length: { minimum: 6 },
+                       allow_nil: true
 
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
@@ -32,7 +33,7 @@ class User < ApplicationRecord
   end
 
   # 渡されたトークンがダイジェストと一致したらtrueを返す
-  def authenticated?(remember_digest)
+  def authenticated?(remember_token)
     return false if remember_digest.nil?
 
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
