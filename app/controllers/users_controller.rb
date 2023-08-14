@@ -35,7 +35,6 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       flash[:success] = 'Profile updated'
       redirect_to @user
-      # 何か
     else
       render 'edit', status: :unprocessable_entity
     end

@@ -42,7 +42,7 @@ class User < ApplicationRecord
 
   # 渡されたトークンがダイジェストと一致したらtrueを返す
   def authenticated?(attribute, token)
-    digest = send("#{attribute}_digest")
+    digest = send("#{attribute}_digest")  # ← self.send(...)
     return false if digest.nil?
 
     BCrypt::Password.new(digest).is_password?(token)
@@ -67,13 +67,18 @@ class User < ApplicationRecord
   # パスワード再設定の属性を設定する
   def create_reset_digest
     self.reset_token = User.new_token
-    update_attribute(:reset_digest,  User.digest(reset_token))
-    update_attribute(:reset_sent_ad, Time.zone.now)
+    update_columns(reset_digest:  User.digest(reset_token),
+                   reset_sent_ad: Time.zone.now)
   end
 
   # パスワード再設定のメールを送信する
   def send_password_reset_email
-    UserMailer.password_reset(self).diliver_now
+    UserMailer.password_reset(self).deliver_now
+  end
+
+  # パスワード再設定の期限が切れている場合はtrueを返す
+  def password_reset_expired?
+    reset_sent_ad < 2.hours.ago
   end
 
   private
