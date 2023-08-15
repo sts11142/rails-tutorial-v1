@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :users  # 操作を行う対象となるものを設置（テーブルとか？）
   resources :account_activations, only: [:edit]
   resources :password_resets,     onlu: [:new, :create, :update]
+  resources :microposts,          only: [:create, :destroy]
+  get '/microposts', to: 'static_pages#home'
 end
