@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # ruby '3.2.2'
+gem 'active_storage_validations'
 gem 'bootsnap', require: false
 gem 'bootstrap-sass'
 gem 'bootstrap-will_paginate', "1.0.0"
